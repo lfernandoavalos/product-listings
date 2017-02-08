@@ -13,7 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['prefix' => 'sources'], function() {
+Route::post('/authenticate', [
+	'as' => 'authenticate',
+	'uses' => 'AuthenticateController@authenticate'
+]);
+
+Route::group(['prefix' => 'sources', 'middleware' => 'jwt.auth'], function() {
   require __DIR__.'/resources/sources.php';
 });
 
