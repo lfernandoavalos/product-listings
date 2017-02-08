@@ -40,7 +40,7 @@ Run our seeder
 
 Run our php server
 
-`php -S localhost:8000 plic/index.php`
+`php -S localhost:8000 public/index.php`
 
 ## Usage
 First we need to create our access token
