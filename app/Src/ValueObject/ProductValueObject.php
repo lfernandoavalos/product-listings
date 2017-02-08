@@ -9,6 +9,8 @@ class ProductValueObject {
 	private $price;
 
 	private $source = "";
+	private $tag = "";
+	private $sourceUrl = "";
 
 	/**
 	 * 
@@ -38,8 +40,26 @@ class ProductValueObject {
 	 * @param string $source 
 	 * @return void
 	 */
+	public function setSourceUrl($sourceUrl) {
+		$this->sourceUrl = $sourceUrl;
+	}
+
+	/**
+	 * Source 
+	 * @param string $source 
+	 * @return void
+	 */
 	public function setSource($source) {
 		$this->source = $source;
+	}
+
+	/**
+	 * Set tag 
+	 * @param string $tag 
+	 * @return void
+	 */
+	public function setTag($tag) {
+		$this->tag = $tag;
 	}
 
 	/**
@@ -51,6 +71,7 @@ class ProductValueObject {
 			'title' => $this->title,
 			'description' => $this->description,
 			'price' => $this->price,
+			'source_url' => $this->sourceUrl,
 			'source' => $this->source
 		];
 	}
