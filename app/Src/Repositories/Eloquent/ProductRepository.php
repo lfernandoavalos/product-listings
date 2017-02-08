@@ -37,12 +37,14 @@ class ProductRepository extends AbstractRepository {
         $record = $this->fetchByUrl($sourceUrl);
 
         if(!$record) {
+            error_log("Creating record");
             $data = $product->toArray();
             unset($data['tag']);
             $tag = $product->getTag();
             $data['tags'] = json_encode([$tag => $tag]);
             $record = $this->create($data);
         } else {
+            error_log("Updating record");
             $data = $product->toArray();
             unset($data['tag']);
             $tag = $product->getTag();
