@@ -7,7 +7,7 @@ Route::get('', [
 ]);
 
 // Scrape all sources
-Route::get('scrape', [
+Route::post('scrape', [
   'as' => 'sources.all.scrape',
   'uses' => 'SourceController@ascrape'
 ]);
@@ -19,7 +19,7 @@ Route::get('{sourceName}', [
 ]);
 
 // Scrape a source
-Route::get('{sourceName}/scrape', [
+Route::post('{sourceName}/scrape', [
   'as' => 'sources.scrape',
   'uses' => 'SourceController@scrape'
 ]);
