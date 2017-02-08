@@ -81,7 +81,7 @@ abstract class AbstractScraper
      * @return DOMNodeList
      */
     protected function getNodes($dom, $classname) {
-        if ( $dom instanceof DOMElement) {
+        if ( !($dom instanceof DOMDocument))  {
             $html = $dom->ownerDocument->saveHTML($dom);
             $dom = new DOMDocument;
             $dom->loadHTML($html);
