@@ -18,8 +18,14 @@ Route::post('/authenticate', [
 	'uses' => 'AuthenticateController@authenticate'
 ]);
 
-Route::group(['prefix' => 'sources', 'middleware' => 'jwt.auth'], function() {
-  require __DIR__.'/resources/sources.php';
+Route::group(['middleware' => 'jwt.auth'], function() {
+	Route::group(['prefix' => 'sources'], function() {
+  		require __DIR__.'/resources/sources.php';
+	});
+  	
+  	Route::group(['prefix' => 'products'], function() {
+  		require __DIR__.'/resources/products.php';
+	});
 });
 
 
