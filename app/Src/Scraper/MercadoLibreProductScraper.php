@@ -57,10 +57,13 @@ class MercadoLibreProductScraper extends AbstractScraper implements ProductScrap
      * @return string
      */
     public function scrapeTitle() {
-        $titleNode = $this->getNodes($this->dom, 'vip-title-main ')->item(0);
+        $titleNode = $this->getNodes($this->dom, 'vip-section-header')->item(0);
+        $titleNode = $this->getNodes($titleNode, 'vip-title-main')->item(0);
+        
         if ( !$titleNode ) {
             return null;
         }
+
         return $titleNode->nodeValue;
     }
 
@@ -98,7 +101,7 @@ class MercadoLibreProductScraper extends AbstractScraper implements ProductScrap
         
         $priceNode = $dom->getElementsByTagName('strong')->item(0);
         $price = $priceNode->nodeValue.".".$decimal;
-        
+
         return $price;
     }
 
