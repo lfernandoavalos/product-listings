@@ -54,7 +54,9 @@ class MercadoLibreScraper extends AbstractScraper
             $productScraper = new MercadoLibreProductScraper($href);
             $productScraper->scrape();
             $product = $productScraper->getProduct();
-            $product->setSource($productScraper->getUrl());
+            $product->setSourceUrl($productScraper->getUrl());
+            $product->setSource(self::SOURCE_NAME);
+            $product->setTag($this->getTag());
             $this->products[] = $product->toArray();
         }
     }

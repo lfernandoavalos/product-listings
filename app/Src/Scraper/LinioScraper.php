@@ -57,7 +57,9 @@ class LinioScraper extends AbstractScraper
                 $productScraper = new LinioProductScraper($href);
                 $productScraper->scrape();
                 $product = $productScraper->getProduct();
-                $product->setSource($productScraper->getUrl());
+                $product->setSourceUrl($productScraper->getUrl());
+                $product->setSource(self::SOURCE_NAME);
+                $product->setTag($this->getTag());
                 $this->products[] = $product->toArray();
             }
         }
