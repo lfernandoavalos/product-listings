@@ -90,8 +90,7 @@ class LinioProductScraper extends AbstractScraper implements ProductScraperInter
         if ( !$priceNode ) {
             return null;
         }
-        $price = preg_replace('/[^\d\.]/', '', $priceNode->nodeValue);
-        return floatval($price);
+        return $priceNode->nodeValue;
     }
 
     /**
