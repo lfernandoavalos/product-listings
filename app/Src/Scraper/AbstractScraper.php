@@ -133,6 +133,15 @@ abstract class AbstractScraper
     }
 
     /**
+     * 
+     * @param type $limit 
+     * @return type
+     */
+    public function setLimit($limit) {
+        $this->limit = $limit;
+    }
+
+    /**
      * Let children perform setup
      */
     abstract protected function setup();

@@ -59,6 +59,13 @@ class SourceController extends Controller
     public function scrape(Request $request, $sourceName)
     {
         $product = trim($request->get('search'));
+        $limit = $request->get('limit', 10);
+        if($limit > 10) {
+            return response()->json([
+                'success' => false,
+                'message' => "Due to timeout max number of items that can be scraped is 10"
+            ]);
+        }
         $cproducts = [];
         if(!$product) {
             return response()->json([
@@ -70,6 +77,7 @@ class SourceController extends Controller
         //
         try{
             $scraper = ScraperFactory::create($sourceName, $product);
+            $scraper->setLimit($limit);
             $scraper->scrape();
             $products = $scraper->getProducts();
             foreach ($products as $product) {
