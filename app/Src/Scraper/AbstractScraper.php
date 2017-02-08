@@ -57,6 +57,13 @@ abstract class AbstractScraper
         $this->setDomDocumentUrl();
     }
 
+    public function createDomDocument($dom) {
+        $html = $dom->ownerDocument->saveHTML($dom);
+        $dom = new DOMDocument;
+        @$dom->loadHTML($html);
+        return $dom;
+    }
+
     /**
      * Description
      * @param DOMDocument $dom 
@@ -65,9 +72,7 @@ abstract class AbstractScraper
      */
     protected function getTags($dom, $tag) {
         if ( !($dom instanceof DOMDocument) ) {
-            $html = $dom->ownerDocument->saveHTML($dom);
-            $dom = new DOMDocument;
-            $dom->loadHTML($html);    
+            $dom = $this->createDomDocument($dom);  
         }
         
         return $dom->getElementsByTagName($tag);
@@ -82,9 +87,7 @@ abstract class AbstractScraper
      */
     protected function getNodes($dom, $classname) {
         if ( !($dom instanceof DOMDocument))  {
-            $html = $dom->ownerDocument->saveHTML($dom);
-            $dom = new DOMDocument;
-            $dom->loadHTML($html);
+            $dom = $this->createDomDocument($dom);
         }
 
         $finder = new DomXPath($dom);
