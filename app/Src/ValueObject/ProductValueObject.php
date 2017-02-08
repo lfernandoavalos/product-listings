@@ -18,9 +18,19 @@ class ProductValueObject {
 	 * @return type
 	 */
 	public function __construct($title = '', $description = '', $price = null) {
-		$this->title = $title;
-		$this->description = $description;
-		$this->price = $price;
+		$this->title = trim($title);
+		$this->description = trim($description);
+		$this->price = $this->cleanPrice($price);
+	}
+
+	/**
+	 * Clean/Format price
+	 * @param string $price 
+	 * @return float
+	 */
+	private function cleanPrice($price) {
+		$price = preg_replace('/[^\d\.]/', '', $price);
+        return floatval($price);
 	}
 
 	/**
