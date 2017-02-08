@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group(['prefix' => 'sources'], function() {
+  require __DIR__.'/resources/sources.php';
+});
+
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
