@@ -51,6 +51,11 @@ class MercadoLibreScraper extends AbstractScraper
                 break;
             }
             $href = $a->getAttribute('href');
+            $productScraper = new MercadoLibreProductScraper($href);
+            $productScraper->scrape();
+            $product = $productScraper->getProduct();
+            $product->setSource($productScraper->getUrl());
+            $this->products[] = $product->toArray();
         }
     }
 }
