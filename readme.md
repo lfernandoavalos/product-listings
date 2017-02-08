@@ -57,12 +57,12 @@ We currently have 2 sources
 `/api/sources/linio/scrape` & `/api/sources/mercado_libre/scrape`
 
     curl --request POST \
-    --url 'http://localhost:8000/api/sources/linio/scrape?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ4NjU5NzMzNSwiZXhwIjoxNDg2NjAwOTM1LCJuYmYiOjE0ODY1OTczMzUsImp0aSI6IjliYTBkMzE3NWE4YjEwMWE4OTcwMzllZDBkOWNiNGYwIn0.66L-szZT9A3GwxCB8au-Y31dNjPFaGl0IhIdiSdIHOM&search=zapatos' \
+    --url 'http://localhost:8000/api/sources/linio/scrape?token=[YOUR_TOKEN]&search=zapatos' \
     --header 'cache-control: no-cache' \
 
 We can view our products
 
     curl --request GET \
-    --url 'http://localhost:8000/api/products?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ4NjU5NzMzNSwiZXhwIjoxNDg2NjAwOTM1LCJuYmYiOjE0ODY1OTczMzUsImp0aSI6IjliYTBkMzE3NWE4YjEwMWE4OTcwMzllZDBkOWNiNGYwIn0.66L-szZT9A3GwxCB8au-Y31dNjPFaGl0IhIdiSdIHOM' \
+    --url 'http://localhost:8000/api/products?token=[YOUR_TOKEN]' \
     --header 'cache-control: no-cache' \
 
