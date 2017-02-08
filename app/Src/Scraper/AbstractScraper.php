@@ -41,6 +41,11 @@ abstract class AbstractScraper
     protected $limit = 2;
 
     /**
+     * @var string
+     */
+    protected $tag = "";
+
+    /**
      * Constructor
      * @return 
      */
@@ -62,6 +67,23 @@ abstract class AbstractScraper
         $dom = new DOMDocument;
         @$dom->loadHTML($html);
         return $dom;
+    }
+
+    /**
+     * Set search tag
+     * @param string $tag 
+     * @return type
+     */
+    public function setTag($tag) {
+        $this->tag = $tag;
+    }
+
+    /**
+     * 
+     * @return type
+     */
+    public function getTag() {
+        return $this->tag;
     }
 
     /**
