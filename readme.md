@@ -1,40 +1,68 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<p align="center"><img src="https://facturama.mx/Public/img/clients_img/konfio-facturama-factura-electronica-gratis.png"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
 
-## About Laravel
+## Product Listings
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+Product listings api built with [Laravel](https://laravel.com)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+## Before you begin
 
-## Learning Laravel
+Make sure you have [Composer](https://getcomposer.org/) installed
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## Setup
+Run `composer install`
 
-## Contributing
+Copy our example env file
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+`cp .env.example .env`
 
-## Security Vulnerabilities
+Update `.env` file with your own configuration
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-## License
+    APP_URL=http://localhost:8000
+    
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=product_listings
+    DB_USERNAME=root
+    DB_PASSWORD=root
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Run migration files
+
+`php artisan migrate`
+
+Run our seeder
+
+`php artisan db:seed --class=UsersTableSeeder`
+
+Run our php server
+
+`php -S localhost:8000 plic/index.php`
+
+## Usage
+First we need to create our access token
+
+    curl --request POST \
+    --url http://localhost:8000/api/authenticate \
+    --header 'cache-control: no-cache' \
+    --header 'content-type: application/x-www-form-urlencoded' \
+    --data 'email=lfernandoavalos%40gmail.com&password=password'
+
+Now we can post to our sources
+
+We currently have 2 sources
+`/api/sources/linio/scrape` & `/api/sources/mercado_libre/scrape`
+
+    curl --request POST \
+    --url 'http://localhost:8000/api/sources/linio/scrape?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ4NjU5NzMzNSwiZXhwIjoxNDg2NjAwOTM1LCJuYmYiOjE0ODY1OTczMzUsImp0aSI6IjliYTBkMzE3NWE4YjEwMWE4OTcwMzllZDBkOWNiNGYwIn0.66L-szZT9A3GwxCB8au-Y31dNjPFaGl0IhIdiSdIHOM&search=zapatos' \
+    --header 'cache-control: no-cache' \
+
+We can view our products
+
+    curl --request GET \
+    --url 'http://localhost:8000/api/products?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwXC9hcGlcL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTQ4NjU5NzMzNSwiZXhwIjoxNDg2NjAwOTM1LCJuYmYiOjE0ODY1OTczMzUsImp0aSI6IjliYTBkMzE3NWE4YjEwMWE4OTcwMzllZDBkOWNiNGYwIn0.66L-szZT9A3GwxCB8au-Y31dNjPFaGl0IhIdiSdIHOM' \
+    --header 'cache-control: no-cache' \
+
