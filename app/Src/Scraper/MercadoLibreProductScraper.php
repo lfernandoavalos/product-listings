@@ -58,12 +58,10 @@ class MercadoLibreProductScraper extends AbstractScraper implements ProductScrap
      */
     public function scrapeTitle() {
         $titleNode = $this->getNodes($this->dom, 'vip-section-header')->item(0);
-        $titleNode = $this->getNodes($titleNode, 'vip-title-main')->item(0);
-        
-        if ( !$titleNode ) {
+        if (!$titleNode) {
             return null;
         }
-
+        $titleNode = $this->getNodes($titleNode, 'vip-title-main')->item(0);
         return $titleNode->nodeValue;
     }
 

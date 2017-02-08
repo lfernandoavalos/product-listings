@@ -43,14 +43,21 @@ class MercadoLibreScraper extends AbstractScraper
      */
     public function scrape() {
 
-        $pnodes = $this->getNodes($this->dom, 'item-link');
+        $pnodes = $this->getNodes($this->dom, 'rowItem');
         
-        foreach ($pnodes as $count => $a) {
+        foreach ($pnodes as $count => $productContainerNode) {
             
             if ($count > $this->limit) {
                 break;
             }
+
+            $productNode = $this->getNodes($productContainerNode, 'item-link')->item(0);
+            $tags = $this->getTags($productNode, 'a');
+            $a = $tags->item(0);
             $href = $a->getAttribute('href');
+            if(preg_match('/click1/', $href)) {
+                continue;
+            }
             $productScraper = new MercadoLibreProductScraper($href);
             $productScraper->scrape();
             $product = $productScraper->getProduct();
