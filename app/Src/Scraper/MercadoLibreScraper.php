@@ -57,7 +57,7 @@ class MercadoLibreScraper extends AbstractScraper
             $product->setSourceUrl($productScraper->getUrl());
             $product->setSource(self::SOURCE_NAME);
             $product->setTag($this->getTag());
-            $this->products[] = $product->toArray();
+            $this->products[] = $product;
         }
     }
 }
