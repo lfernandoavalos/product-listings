@@ -6,6 +6,12 @@ Route::get('', [
   'uses' => 'SourceController@index'
 ]);
 
+// Scrape all sources
+Route::get('scrape', [
+  'as' => 'sources.all.scrape',
+  'uses' => 'SourceController@ascrape'
+]);
+
 // Display source informaiton
 Route::get('{sourceName}', [
   'as' => 'sources.show',
@@ -16,10 +22,4 @@ Route::get('{sourceName}', [
 Route::get('{sourceName}/scrape', [
   'as' => 'sources.scrape',
   'uses' => 'SourceController@scrape'
-]);
-
-// Scrape all sources
-Route::get('/scrape', [
-  'as' => 'sources.all.scrape',
-  'uses' => 'SourceController@ascrape'
 ]);
