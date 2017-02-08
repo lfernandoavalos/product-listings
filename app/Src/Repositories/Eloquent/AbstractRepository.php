@@ -48,6 +48,14 @@ abstract class AbstractRepository {
 
     /**
      * 
+     * @return type
+     */
+    public function paginate($perPage) {
+        return $this->model->paginate($perPage);
+    }
+
+    /**
+     * 
      * @param type $data 
      * @return type
      */
