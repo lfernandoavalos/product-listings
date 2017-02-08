@@ -33,7 +33,12 @@ abstract class AbstractScraper
     /**
      * @var array
      */
-    protected $products;
+    protected $products = [];
+
+    /**
+     * @var int
+     */
+    protected $limit = 2;
 
     /**
      * Constructor
@@ -95,6 +100,14 @@ abstract class AbstractScraper
     }
 
     /**
+     * Get scraper url
+     * @return type
+     */
+    public function getUrl() {
+        return $this->url;
+    }
+
+    /**
      * Let children perform setup
      */
     abstract protected function setup();
@@ -104,6 +117,14 @@ abstract class AbstractScraper
      * @return array
      */
     abstract public function scrape();
+
+    /**
+     * Retrieve products
+     * @return type
+     */
+    public function getProducts() {
+        return $this->products;
+    }
 
     /**
      * Create search endpoint

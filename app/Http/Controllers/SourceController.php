@@ -59,8 +59,9 @@ class SourceController extends Controller
         try{
             $scraper = ScraperFactory::create($sourceName, $product);
             $scraper->scrape();
+            $products = $scraper->getProducts();
         }catch(\Exception $e) {
-            var_dump($e->getMessage());
+            
             // TODO: Setup logging 
             return response()->json([
                 'success' => false,
@@ -71,7 +72,7 @@ class SourceController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "$sourceName was successfully scrapped"
+            'data' => $products
         ]);
     }
 

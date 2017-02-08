@@ -33,6 +33,8 @@ class LinioScraper extends AbstractScraper
 
     }
 
+
+
     /**
      * Run scraper to fetch products
      * 
@@ -41,12 +43,22 @@ class LinioScraper extends AbstractScraper
      */
     public function scrape() {
         $pnodes = $this->getNodes($this->dom, 'detail-container');
-        foreach ($pnodes as $productContainerNode) {
+        foreach ($pnodes as $count => $productContainerNode) {
+            
+            if ($count > $this->limit) {
+                break;
+            }
+
             $productNode = $this->getNodes($productContainerNode, 'title-section');
             foreach ($productNode as $node) {
                 $tags = $this->getTags($node, 'a');
                 $a = $tags->item(0);
                 $href = $a->getAttribute('href');
+                $productScraper = new LinioProductScraper($href);
+                $productScraper->scrape();
+                $product = $productScraper->getProduct();
+                $product->setSource($productScraper->getUrl());
+                $this->products[] = $product->toArray();
             }
         }
     }
