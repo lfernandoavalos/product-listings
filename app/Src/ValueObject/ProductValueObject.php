@@ -64,6 +64,22 @@ class ProductValueObject {
 
 	/**
 	 * 
+	 * @return type
+	 */
+	public function getTag() {
+		return $this->tag;
+	}
+
+	/**
+	 * 
+	 * @return string
+	 */
+	public function getSourceUrl() {
+		return $this->sourceUrl;
+	}
+
+	/**
+	 * 
 	 * @return array
 	 */
 	public function toArray() {
@@ -72,7 +88,8 @@ class ProductValueObject {
 			'description' => $this->description,
 			'price' => $this->price,
 			'source_url' => $this->sourceUrl,
-			'source' => $this->source
+			'source' => $this->source,
+			'tag' => $this->tag
 		];
 	}
 }
