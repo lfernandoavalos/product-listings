@@ -1,0 +1,17 @@
++--------+----------+---------------------------------+--------------------+----------------------------------------------------------+--------------+
+| Domain | Method   | URI                             | Name               | Action                                                   | Middleware   |
++--------+----------+---------------------------------+--------------------+----------------------------------------------------------+--------------+
+|        | GET|HEAD | /                               |                    | Closure                                                  | web          |
+|        | POST     | api/authenticate                | authenticate       | App\Http\Controllers\AuthenticateController@authenticate | api          |
+|        | GET|HEAD | api/favorites                   | favorites.index    | App\Http\Controllers\FavoriteController@index            | api,jwt.auth |
+|        | POST     | api/favorites                   | favorites.store    | App\Http\Controllers\FavoriteController@store            | api,jwt.auth |
+|        | GET|HEAD | api/favorites/{id}              | favorites.show     | App\Http\Controllers\FavoriteController@show             | api,jwt.auth |
+|        | DELETE   | api/favorites/{id}              | favorites.delete   | App\Http\Controllers\FavoriteController@delete           | api,jwt.auth |
+|        | GET|HEAD | api/products                    | products.index     | App\Http\Controllers\ProductController@index             | api,jwt.auth |
+|        | GET|HEAD | api/products/{id}               | products.show      | App\Http\Controllers\ProductController@show              | api,jwt.auth |
+|        | GET|HEAD | api/products/{id}/history       | products.history   | App\Http\Controllers\ProductController@history           | api,jwt.auth |
+|        | GET|HEAD | api/sources                     | sources.index      | App\Http\Controllers\SourceController@index              | api,jwt.auth |
+|        | POST     | api/sources/scrape              | sources.all.scrape | App\Http\Controllers\SourceController@ascrape            | api,jwt.auth |
+|        | GET|HEAD | api/sources/{sourceName}        | sources.show       | App\Http\Controllers\SourceController@show               | api,jwt.auth |
+|        | POST     | api/sources/{sourceName}/scrape | sources.scrape     | App\Http\Controllers\SourceController@scrape             | api,jwt.auth |
++--------+----------+---------------------------------+--------------------+----------------------------------------------------------+--------------+
