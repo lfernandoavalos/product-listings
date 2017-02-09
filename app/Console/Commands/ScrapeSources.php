@@ -51,11 +51,16 @@ class ScrapeSources extends Command
             $sources[] = $source;
         }
 
-        foreach ($sources as $source) {            
-            $scraper = ScraperFactory::create($source, $product);
-            $scraper->setLimit($limit);
-            $scraper->scrape();
-            $products = array_merge($scraper->getProducts(), $products);
+        foreach ($sources as $source) {
+            try{
+                $scraper = ScraperFactory::create($source, $product);
+                $scraper->setLimit($limit);
+                $scraper->scrape();
+                $products = array_merge($scraper->getProducts(), $products);    
+            }catch(\Exception $e) {
+                $this->error("Config for $source was not found");
+            }   
+            
         }
 
     }
