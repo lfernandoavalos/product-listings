@@ -66,3 +66,10 @@ We can view our products
     --url 'http://localhost:8000/api/products?token=[YOUR_TOKEN]' \
     --header 'cache-control: no-cache' \
 
+Due to timeout if you want to scrape more than 10 items please use artisan command
+
+`php artisan scrape:sources [Search Term] --source=[linio|mercado_libre] --limit=[YOUR_LIMIT]`
+
+## List of endpoints
+
+Please review routes.txt
