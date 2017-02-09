@@ -26,6 +26,10 @@ Route::group(['middleware' => 'jwt.auth'], function() {
   	Route::group(['prefix' => 'products'], function() {
   		require __DIR__.'/resources/products.php';
 	});
+
+	Route::group(['prefix' => 'favorites'], function() {
+  		require __DIR__.'/resources/favorites.php';
+	});
 });
 
 
