@@ -115,4 +115,32 @@ class ProductController extends Controller
     {
         //
     }
+
+    /**
+     * Retrieve history for item
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function history($id)
+    {
+        //
+        $product = $this->repo->find($id);
+
+        if(!$product) {
+            return response()->json([
+                'success' => false,
+                'message' => "Could not find a product with id $id"
+            ]);
+        }
+        $history = $this->repo->fetchHistory($id);
+        
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'current' => $product->toArray(),
+                'history' => $history->toArray()
+            ]
+        ]);
+    }
 }

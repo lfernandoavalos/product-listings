@@ -39,6 +39,15 @@ class ProductRepository extends AbstractRepository {
 
     /**
      * 
+     * @param type $id 
+     * @return type
+     */
+    public function fetchHistory($id) {
+        return $this->model->withTrashed()->where('id', $id)->where('current', 0)->get();
+    }
+
+    /**
+     * 
      * @param type $data 
      * @return type
      */
