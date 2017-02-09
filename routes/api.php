@@ -31,8 +31,3 @@ Route::group(['middleware' => 'jwt.auth'], function() {
   		require __DIR__.'/resources/favorites.php';
 	});
 });
-
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
