@@ -28,6 +28,15 @@ class ProductRepository extends AbstractRepository {
     }
 
     /**
+     * Description
+     * @param type $id 
+     * @return type
+     */
+    public function find($id) {
+        return $this->model->find($id);
+    }
+
+    /**
      * Store batch or single product
      * @param mixed $mixed 
      * @return type

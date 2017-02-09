@@ -67,6 +67,19 @@ class ProductController extends Controller
     public function show($id)
     {
         //
+        $product = $this->repo->find($id);
+
+        if(!$product) {
+            return response()->json([
+                'success' => false,
+                'message' => "Could not find a product with id $id"
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $product->toArray()
+        ]);
     }
 
     /**
