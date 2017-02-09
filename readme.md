@@ -3,7 +3,16 @@
 
 ## Product Listings
 
-Product listings api built with [Laravel](https://laravel.com)
+Product listings api built with [Laravel](https://laravel.com).
+
+## Key Features
+Product records are stored as temporal records in order to keep product history
+
+## Todo
+- Implement ElasticSearch
+- Implement search
+
+
 
 
 ## Before you begin
