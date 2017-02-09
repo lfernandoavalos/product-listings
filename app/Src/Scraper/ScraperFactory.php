@@ -15,7 +15,7 @@ class ScraperFactory {
 			$name .= ucwords(strtolower($w));
 		}		
 
-		$class = "\App\Src\Scraper\\".$name.'Scraper';
+		$class = "\App\Src\Scraper\\".$name.'SearchScraper';
 
 		if ( !class_exists($class) ) {
 			throw new \Exception("$class not found", 1);

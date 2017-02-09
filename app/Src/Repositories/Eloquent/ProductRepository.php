@@ -87,6 +87,9 @@ class ProductRepository extends AbstractRepository {
             // Create new temp record when tags have changed
             $tag = $product->getTag();
             $tags = $record->tags;
+            if(!$tags) {
+                $tags = new \stdObject();
+            }
             if(!isset($tags->$tag)) {
                 $createTempRecord = true;
                 error_log("There was change in tags");

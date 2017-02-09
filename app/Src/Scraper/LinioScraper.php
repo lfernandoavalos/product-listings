@@ -44,8 +44,8 @@ class LinioScraper extends AbstractScraper
     public function scrape() {
         $pnodes = $this->getNodes($this->dom, 'detail-container');
         foreach ($pnodes as $count => $productContainerNode) {
-            
-            if ($count > $this->limit) {
+            error_log("$count => Doing some magic searching for a product $count > $this->limit");
+            if ($count > $this->limit - 1) {
                 break;
             }
 

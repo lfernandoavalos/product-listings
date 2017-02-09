@@ -44,10 +44,12 @@ class MercadoLibreScraper extends AbstractScraper
     public function scrape() {
 
         $pnodes = $this->getNodes($this->dom, 'rowItem');
-        
+        if($this->limit <= $pnodes->length) {
+
+        }
         foreach ($pnodes as $count => $productContainerNode) {
-            
-            if ($count > $this->limit) {
+            error_log("$count => Doing some magic searching for a product $count > $this->limit");
+            if ($count > $this->limit - 1) {
                 break;
             }
 
@@ -55,6 +57,7 @@ class MercadoLibreScraper extends AbstractScraper
             $tags = $this->getTags($productNode, 'a');
             $a = $tags->item(0);
             $href = $a->getAttribute('href');
+            // TODO:: Look into 'click1' links
             if(preg_match('/click1/', $href)) {
                 continue;
             }

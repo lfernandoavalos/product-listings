@@ -100,6 +100,14 @@ class ProductValueObject {
 	 * 
 	 * @return type
 	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * 
+	 * @return type
+	 */
 	public function getPrice() {
 		return $this->price;
 	}

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Src\Scraper\ScraperFactory;
+use App\Src\Repositories\Eloquent\ProductRepository;
 
 class ScrapeSources extends Command
 {
@@ -29,6 +30,8 @@ class ScrapeSources extends Command
     public function __construct()
     {
         parent::__construct();
+
+        $this->repo = app('\App\Src\Repositories\Eloquent\ProductRepository');
     }
 
     /**
@@ -55,13 +58,19 @@ class ScrapeSources extends Command
             try{
                 $scraper = ScraperFactory::create($source, $product);
                 $scraper->setLimit($limit);
+                $scraper->setTag($product);
                 $scraper->scrape();
                 $products = array_merge($scraper->getProducts(), $products);    
             }catch(\Exception $e) {
                 $this->error("Config for $source was not found");
             }   
-            
         }
 
+        foreach ($products as $c => $product) {
+            error_log("$c => Adding ".$product->getTitle());
+            $this->repo->store($product)->toArray();    
+        }
+
+        $this->info(sizeof($products)." were added to the database");
     }
 }
