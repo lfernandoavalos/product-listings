@@ -21,7 +21,14 @@ class Product extends Model
      *
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $guarded = ['db_key_id'];
+
+    /**
+     * Primary key
+     *
+     * @var array
+     */
+    protected $primaryKey = 'db_key_id';
 
     /**
      *

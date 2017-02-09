@@ -27,6 +27,6 @@ class Favorite extends Model
      * 
      */
     public function product() {
-        return $this->hasOne('App\Src\Models\Product', 'id', 'product_id');
+        return $this->hasOne('App\Src\Models\Product', 'db_key_id', 'product_id');
     }
 }

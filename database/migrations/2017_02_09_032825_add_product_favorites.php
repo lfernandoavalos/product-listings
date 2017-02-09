@@ -20,7 +20,7 @@ class AddProductFavorites extends Migration
             $table->integer('product_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('db_key_id')->on('products');
 
             $table->timestamps();
             $table->softDeletes();

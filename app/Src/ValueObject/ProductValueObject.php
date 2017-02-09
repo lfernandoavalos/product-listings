@@ -54,12 +54,30 @@ class ProductValueObject {
 	}
 
 	/**
+	 * 
+	 * @param type $price 
+	 * @return type
+	 */
+	public function setPrice($price) {
+		$this->price = $price;
+	}
+
+	/**
 	 * Set tag 
 	 * @param string $tag 
 	 * @return void
 	 */
 	public function setTag($tag) {
 		$this->tag = $tag;
+	}
+
+	/**
+	 * 
+	 * @param type $description 
+	 * @return type
+	 */
+	public function setDescription($description) {
+		$this->description = $description;
 	}
 
 	/**
@@ -76,6 +94,22 @@ class ProductValueObject {
 	 */
 	public function getSourceUrl() {
 		return $this->sourceUrl;
+	}
+
+	/**
+	 * 
+	 * @return type
+	 */
+	public function getPrice() {
+		return $this->price;
+	}
+
+	/**
+	 * 
+	 * @return type
+	 */
+	public function getDescription() {
+		return $this->description;
 	}
 
 	/**
